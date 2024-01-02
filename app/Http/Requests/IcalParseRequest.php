@@ -20,6 +20,13 @@ class IcalParseRequest extends FormRequest
             'start_date' => now()->format('Y-m-d'),
             'end_date'   => now()->addYears(2)->format('Y-m-d'),
         ]);
+
+        // Convert comma separated urls to array
+        if (is_string($this->urls)) {
+            $this->merge([
+                'urls' => explode(',', $this->urls),
+            ]);
+        }
     }
 
     /**
