@@ -14,6 +14,7 @@ class IcalController extends Controller
 {
     #[Get(
         path: '/ical',
+        operationId: 'ical.parse',
         description: 'Get ical',
         summary: 'Get ical as json',
         tags: ['ical'],
