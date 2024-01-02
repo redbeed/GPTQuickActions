@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,5 +14,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/ical', [\App\Http\Controllers\IcalController::class, 'parse'])->name('ical.parse');
+Route::get('/date', \App\Http\Controllers\DateController::class)->name('date');
 
 

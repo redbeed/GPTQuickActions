@@ -1,0 +1,11 @@
+### Get Current Date
+GET https://actions.ddev.site/api/date
+Accept: application/json
+
+### Get Date 5 days ago
+GET https://actions.ddev.site/api/date?sub=432000
+Accept: application/json
+
+### Get Date 5 days in the future
+GET https://actions.ddev.site/api/date?add=432000
+Accept: application/json
