@@ -24,7 +24,7 @@ class IcalParseRequest extends FormRequest
         // Convert comma separated urls to array
         if (is_string($this->urls)) {
             $this->merge([
-                'urls' => explode(',', $this->urls),
+                'urls' => explode('|', $this->urls),
             ]);
         }
     }

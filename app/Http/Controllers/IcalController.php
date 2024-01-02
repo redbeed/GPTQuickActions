@@ -20,8 +20,8 @@ class IcalController extends Controller
         tags: ['ical'],
         parameters: [
             new Parameter(
-                name: 'urls',
-                description: 'Url to ical',
+                name: 'urls[]',
+                description: 'Url to ical file(s) to parse (pipe separated)',
                 in: 'query',
                 required: true,
                 schema: new Schema(
