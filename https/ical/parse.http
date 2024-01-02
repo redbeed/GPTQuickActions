@@ -1,3 +1,10 @@
+### Provide calendars as Array
+GET https://actions.ddev.site/api/ical?urls[]={{ical_url}}&urls[]={{ical_url_2}}&start_date=2024-01-01&
+    end_date=2024-01-05
+Accept: application/json
+
+### Provide calendars as comma separated list
 GET https://actions.ddev.site/api/ical?urls={{ical_url}},{{ical_url_2}}&start_date=2024-01-01&
     end_date=2024-01-05
 Accept: application/json
+
