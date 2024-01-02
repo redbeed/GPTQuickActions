@@ -74,6 +74,9 @@ class IcalController extends Controller
         // always filter by date (default: now until 2 years in the future)
         $events = $ical->eventsFromRange($request->start_date, $request->end_date);
 
+        // Remove duplicates
+        $events = $this->removeDuplicates($events);
+
         // Filter by text if provided
         if (!empty($request->text)) {
             $events = array_filter($events, function ($event) use ($request) {
@@ -83,5 +86,14 @@ class IcalController extends Controller
         }
 
         return response()->json(array_values($events));
+    }
+
+    private function removeDuplicates(array $events): array
+    {
+        $uniqueEvents = [];
+        foreach ($events as $event) {
+            $uniqueEvents[$event->uid] = $event;
+        }
+        return array_values($uniqueEvents);
     }
 }
