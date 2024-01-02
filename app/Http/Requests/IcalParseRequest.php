@@ -30,7 +30,8 @@ class IcalParseRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'url'        => 'required|url',
+            'urls'   => 'required|array',
+            'urls.*' => 'required|url',
             'start_date' => 'nullable|date',
             'end_date'   => 'nullable|date',
             'text'       => 'nullable|string',

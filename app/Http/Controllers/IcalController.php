@@ -4,69 +4,67 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\IcalParseRequest;
 use ICal\ICal;
-use OpenApi\Annotations as OA;
+use OpenApi\Attributes\Get;
+use OpenApi\Attributes\Items;
+use OpenApi\Attributes\Parameter;
+use OpenApi\Attributes\Response;
+use OpenApi\Attributes\Schema;
 
 class IcalController extends Controller
 {
-    /**
-     * @OA\Get(
-     *     path="/ical",
-     *     tags={"ical"},
-     *     summary="Get ical as json",
-     *     description="Get ical",
-     *     @OA\Parameter(
-     *         name="url",
-     *         in="query",
-     *         description="Url to ical",
-     *         required=true,
-     *         @OA\Schema(
-     *             type="string"
-     *         )
-     *     ),
-     *     @OA\Parameter(
-     *         name="start_date",
-     *         in="query",
-     *         description="Start date to filter ical (default: now)",
-     *         example="2024-01-01",
-     *         required=false,
-     *         @OA\Schema(
-     *             type="string",
-     *             format="date"
-     *         )
-     *     ),
-     *     @OA\Parameter(
-     *         name="end_date",
-     *         in="query",
-     *         description="End date to filter ical (default: 2 years in the future from NOW)",
-     *         example="2024-01-01",
-     *         required=false,
-     *         @OA\Schema(
-     *             type="string",
-     *             format="date"
-     *         )
-     *     ),
-     *      @OA\Parameter(
-     *         name="text",
-     *         in="query",
-     *         description="Text to filter ical",
-     *         required=false,
-     *         @OA\Schema(
-     *             type="string"
-     *         )
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="successful operation"
-     *     ),
-     *      @OA\Response(
-     *         response=400,
-     *         description="Bad request"
-     *     )
-     * )
-     */
+    #[Get(
+        path: '/ical',
+        description: 'Get ical',
+        summary: 'Get ical as json',
+        tags: ['ical'],
+        parameters: [
+            new Parameter(
+                name: 'urls',
+                description: 'Url to ical',
+                in: 'query',
+                required: true,
+                schema: new Schema(
+                    type: 'array',
+                    items: new Items(
+                        type: 'string'
+                    )
+                )
+            ),
+            new Parameter(
+                name: 'start_date',
+                description: 'Start date to filter ical (default: now)',
+                in: 'query',
+                required: false,
+                schema: new Schema(
+                    type: 'string',
+                    format: 'date'
+                )
+            ),
+            new Parameter(
+                name: 'end_date',
+                description: 'End date to filter ical (default: 2 years in the future from NOW)',
+                in: 'query',
+                required: false,
+                schema: new Schema(
+                    type: 'string',
+                    format: 'date'
+                )
+            ),
+        ],
+        responses: [
+            new Response(
+                response: 200,
+                description: 'successful operation'
+            ),
+            new Response(
+                response: 400,
+                description: 'Bad request'
+            )
+        ]
+    )]
     public function parse(IcalParseRequest $request)
     {
-        $ical = new ICal($request->url);
+        $ical = new ICal($request->urls);
 
         if (empty($request->start_date) && empty($request->end_date) && empty($request->text)) {
             return response()->json($ical->events());
