@@ -4,22 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\IcalParseRequest;
 use ICal\ICal;
-use Illuminate\Http\Request;
 use OpenApi\Annotations as OA;
 
-/**
- * @OA\Info(
- *      version="1.0",
- *      title="Example API",
- *      description="Example info",
- *      @OA\Contact(name="Swagger API Team")
- *  )
- */
 class IcalController extends Controller
 {
     /**
      * @OA\Get(
-     *     path="api/ical",
+     *     path="/ical",
      *     tags={"ical"},
      *     summary="Get ical as json",
      *     description="Get ical",

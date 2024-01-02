@@ -1,22 +1,29 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "Example API",
-        "description": "Example info",
+        "title": "Quick Actions for GPT",
         "contact": {
-            "name": "Swagger API Team"
+            "name": "Redbeed Team",
+            "url": "https://redbeed.com/contact",
+            "email": "hello@redbeed.com"
         },
-        "version": "1.0"
+        "version": "0.0.1"
     },
+    "servers": [
+        {
+            "url": "/api",
+            "description": "Main Stateless Server"
+        }
+    ],
     "paths": {
-        "api/ical": {
+        "/ical": {
             "get": {
                 "tags": [
                     "ical"
                 ],
                 "summary": "Get ical as json",
                 "description": "Get ical",
-                "operationId": "fc5cc1338f947b7bead19ef69fe7bd19",
+                "operationId": "f5a6d8c84d2de480a5b0008a1b066e0b",
                 "parameters": [
                     {
                         "name": "url",
