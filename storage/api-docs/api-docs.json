@@ -1,0 +1,73 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Example API",
+        "description": "Example info",
+        "contact": {
+            "name": "Swagger API Team"
+        },
+        "version": "1.0"
+    },
+    "paths": {
+        "api/ical": {
+            "get": {
+                "tags": [
+                    "ical"
+                ],
+                "summary": "Get ical as json",
+                "description": "Get ical",
+                "operationId": "fc5cc1338f947b7bead19ef69fe7bd19",
+                "parameters": [
+                    {
+                        "name": "url",
+                        "in": "query",
+                        "description": "Url to ical",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "start_date",
+                        "in": "query",
+                        "description": "Start date to filter ical (default: now)",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "format": "date"
+                        },
+                        "example": "2024-01-01"
+                    },
+                    {
+                        "name": "end_date",
+                        "in": "query",
+                        "description": "End date to filter ical (default: 2 years in the future from NOW)",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "format": "date"
+                        },
+                        "example": "2024-01-01"
+                    },
+                    {
+                        "name": "text",
+                        "in": "query",
+                        "description": "Text to filter ical",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                }
+            }
+        }
+    }
+}

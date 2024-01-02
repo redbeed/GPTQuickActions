@@ -1,0 +1,2 @@
+GET https://actions.ddev.site/api/ical?url={{ical_url}}&start_date=2024-01-01&end_date=2024-01-05
+Accept: application/json
